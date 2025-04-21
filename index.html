@@ -34,23 +34,23 @@
         const staffClick = document.getElementById('staff-click');
         const currentUrl = "https://qubeshop.github.io"
 
-        if (window.location.href == `${currentUrl}/services`) {
+        if (window.location.href == `${currentUrl}#services`) {
             document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-        } else if (window.location.href == `${currentUrl}/products`) {
+        } else if (window.location.href == `${currentUrl}#products`) {
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-        } else if (window.location.href == `${currentUrl}/staff`) {
+        } else if (window.location.href == `${currentUrl}#staff`) {
             document.getElementById('staff').scrollIntoView({ behavior: 'smooth' });
         } else {
             console.log(window.location.href)
         }
         servicesClick.addEventListener('click', () => {
-            window.location.href = '/services';
+            window.location.href = '#services';
         });
         productsClick.addEventListener('click', () => {
-            window.location.href = '/products';
+            window.location.href = '#products';
         });
         staffClick.addEventListener('click', () => {
-            window.location.href = '/staff';
+            window.location.href = '#staff';
         });
         navLinks.forEach(link => {
             link.addEventListener('click', event => {
