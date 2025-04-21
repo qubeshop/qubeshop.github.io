@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qube</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Qube</h1>
+        <nav>
+            <a data-target="services" id="services-click">Services</a>
+            <a data-target="products" id="products-click">Products</a>
+            <a data-target="staff" id="staff-click">Staff</a>
+        </nav>
+    </header>
+
+    <section id="services">
+        <div>Our Services</div>
+    </section>
+    <section id="products">
+        <div>Our Products</div>
+    </section>
+    <section id="staff">
+        <div>Meet Our Factory Workers</div>
+    </section>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        const servicesClick = document.getElementById('services-click');
+        const productsClick = document.getElementById('products-click');
+        const staffClick = document.getElementById('staff-click');
+        const currentUrl = "https://qubeshop.github.io"
+
+        if (window.location.href == `${currentUrl}/services`) {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        } else if (window.location.href == `${currentUrl}/products`) {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        } else if (window.location.href == `${currentUrl}/staff`) {
+            document.getElementById('staff').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            console.log(window.location.href)
+        }
+        servicesClick.addEventListener('click', () => {
+            window.location.href = '/services';
+        });
+        productsClick.addEventListener('click', () => {
+            window.location.href = '/products';
+        });
+        staffClick.addEventListener('click', () => {
+            window.location.href = '/staff';
+        });
+        navLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                const targetId = link.getAttribute('data-target');
+                const targetSection = document.getElementById(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
